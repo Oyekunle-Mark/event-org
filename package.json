@@ -20,5 +20,8 @@
   "homepage": "https://github.com/Oyekunle-Mark/event-org#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5"
   }
 }
