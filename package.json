@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Oyekunle-Mark/event-org/issues"
   },
-  "homepage": "https://github.com/Oyekunle-Mark/event-org#readme"
+  "homepage": "https://github.com/Oyekunle-Mark/event-org#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
