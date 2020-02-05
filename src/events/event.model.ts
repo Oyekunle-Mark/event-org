@@ -9,7 +9,7 @@ type EventDocument = mongoose.Document & {
     daysActive: Date[];
 }
 
-const userSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
     creator: {
         type: String,
         required: true,
@@ -35,3 +35,5 @@ const userSchema = new mongoose.Schema({
         type: Date,
     }]
 })
+
+export const User = mongoose.model<EventDocument>("Event", eventSchema);
