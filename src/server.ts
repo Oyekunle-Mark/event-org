@@ -8,6 +8,7 @@ import { config } from 'dotenv';
 import output from './utils/logger';
 import connect from './utils/db';
 import event from './events/event.route';
+import response from './utils/response';
 
 config();
 const server = express();
@@ -20,17 +21,11 @@ server.use(helmet());
 server.use(compression());
 server.use(cors());
 
-server.get('/', (_: Request, res: Response) => res.status(200).json({
-  status: 200,
-  message: "Welcome to the event manage API"
-}));
+server.get('/', (_: Request, res: Response) => response(res, 200, 'message', 'Welcome to the event manager API'));
 
 server.use("/api/events", event);
 
-server.use((_: Request, res: Response) => res.status(404).json({
-  status: 404,
-  error: 'That URL looks quite fishy, mate!',
-}));
+server.use((_: Request, res: Response) => response(res, 404, 'error', 'That URL looks quite fishy, mate!'));
 
 export const start = async (): Promise<void> => {
   try {
