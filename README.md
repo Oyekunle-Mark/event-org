@@ -1,2 +1,7 @@
 # event-org
-A manage event app
+
+Allows a user to manage events.
+
+## Author
+
+Oyekunle Oloyede
