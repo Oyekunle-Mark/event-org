@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import logger from 'morgan';
 
 import output from './utils/logger';
+import connect from './utils/db';
 
 const server = express();
 const PORT = 8080;
