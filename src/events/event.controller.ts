@@ -4,6 +4,7 @@ import { check, validationResult } from "express-validator";
 import { Events } from './event.model';
 import response from '../utils/response';
 
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const getEvents = async (req: Request, res: Response) => {
     try {
         const events = await Events.find().lean().exec();
