@@ -1,14 +1,18 @@
 import express, { Request, Response } from 'express';
+import compression from 'compression';
+import cors from 'cors';
+import helmet from 'helmet';
+import logger from 'morgan';
 
-const app = express();
+const server = express();
 const PORT = 8080;
 
-app.get('/', (_: Request, res: Response) => res.status(200).json({
+server.get('/', (_: Request, res: Response) => res.status(200).json({
   status: 200,
   message: "Welcome to the event manage API"
 }));
 
 export const start = (): void =>
-  app.listen(PORT,
+  server.listen(PORT,
     // TODO: replace console log with winston
     console.log(`Server started at http://localhost:${PORT}`));
