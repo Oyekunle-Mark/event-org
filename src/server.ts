@@ -19,6 +19,11 @@ server.get('/', (_: Request, res: Response) => res.status(200).json({
   message: "Welcome to the event manage API"
 }));
 
+server.use((_: Request, res: Response) => res.status(404).json({
+  status: 404,
+  message: 'That URL looks quite fishy, mate!',
+}));
+
 export const start = (): void =>
   server.listen(PORT,
     // TODO: replace console log with winston
