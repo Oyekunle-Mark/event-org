@@ -4,6 +4,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import logger from 'morgan';
 
+import output from './utils/logger';
+
 const server = express();
 const PORT = 8080;
 
@@ -24,7 +26,6 @@ server.use((_: Request, res: Response) => res.status(404).json({
   message: 'That URL looks quite fishy, mate!',
 }));
 
-export const start = (): void =>
-  server.listen(PORT,
-    // TODO: replace console log with winston
-    console.log(`Server started at http://localhost:${PORT}`));
+export const start = (): void => {
+  server.listen(PORT, () => output.debug(`Server started at http://localhost:${PORT}`));
+}
