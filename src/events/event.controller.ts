@@ -4,17 +4,17 @@ import { check, validationResult } from "express-validator";
 import { Events } from './event.model';
 import response from '../utils/response';
 
-export const getEvents = async (req: Request, res: Response): Promise<void> => {
+export const getEvents = async (req: Request, res: Response) => {
     try {
         const events = await Events.find().lean().exec();
 
-        response(res, 200, 'data', events);
+        return response(res, 200, 'data', events);
     } catch (err) {
-        response(res, 500, 'error', err);
+        return response(res, 500, 'error', err);
     }
 }
 
-export const createEvent = async (req: Request, res: Response): Promise<void> => {
+export const createEvent = async (req: Request, res: Response) => {
     try {
         await check("creator", "Event creator name must be longer than 4 characters.").isLength({ min: 4 }).run(req);
         await check("title", "Event title must be longer than 3 characters.").isLength({ min: 3 }).run(req);
@@ -30,8 +30,8 @@ export const createEvent = async (req: Request, res: Response): Promise<void> =>
 
         const event = Events.create({ ...req.body });
 
-        response(res, 201, 'data', event);
+        return response(res, 201, 'data', event);
     } catch (err) {
-        response(res, 500, 'error', err);
+        return response(res, 500, 'error', err);
     }
 }
