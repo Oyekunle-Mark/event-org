@@ -1,11 +1,14 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 const app = express();
 const PORT = 8080;
 
-app.get('/', (req, res) => res.send('Hello world'));
+app.get('/', (_: Request, res: Response) => res.status(200).json({
+  status: 200,
+  message: "Welcome to the event manage API"
+}));
 
 export const start = () =>
-  app.listen(PORT, 
+  app.listen(PORT,
     // TODO: replace console log with winston
     console.log(`Server started at http://localhost:${PORT}`));
