@@ -44,7 +44,7 @@ export const updateEvent = async (req: Request, res: Response) => {
         await check("description", "Event description must be longer than 10 characters.").isLength({ min: 10 }).run(req);
         await check("venue", "Event venue must be longer than 5 characters.").isLength({ min: 5 }).run(req);
         await check("isFree", "isFree property must be a boolean.").isBoolean().run(req);
-        await check("id", "Request parameter must be provided").isNumeric().run(req);
+        await check("id", "Request parameter must be provided").isMongoId().run(req);
 
         const errors = validationResult(req);
 
@@ -68,7 +68,7 @@ export const deleteEvent = async (req: Request, res: Response) => {
         await check("description", "Event description must be longer than 10 characters.").isLength({ min: 10 }).run(req);
         await check("venue", "Event venue must be longer than 5 characters.").isLength({ min: 5 }).run(req);
         await check("isFree", "isFree property missing.").isBoolean().run(req);
-        await check("id", "Request parameter must be provided").isNumeric().run(req);
+        await check("id", "Request parameter must be provided").isMongoId().run(req);
 
         const errors = validationResult(req);
 
