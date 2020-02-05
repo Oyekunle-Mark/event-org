@@ -2,10 +2,10 @@
   "name": "event-org",
   "version": "1.0.0",
   "description": "A manage event app",
-  "main": "",
+  "main": "src/index.ts",
   "scripts": {
     "start": "tsc && node dist/index.js",
-    "dev:run": "ts-node src/index.ts",
+    "dev:run": "ts-node .",
     "dev:watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,7 +30,9 @@
     "mongoose": "^5.8.11",
     "morgan": "^1.9.1",
     "typescript": "^3.7.5",
-    "winston": "^3.2.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
     "@types/compression": "^1.0.1",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
@@ -43,8 +45,5 @@
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",
     "ts-node": "^8.6.2"
-  },
-  "devDependencies": {
-    
   }
 }
