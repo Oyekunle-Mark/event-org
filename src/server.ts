@@ -7,6 +7,7 @@ import { config } from 'dotenv';
 
 import output from './utils/logger';
 import connect from './utils/db';
+import event from './events/event.route';
 
 config();
 const server = express();
@@ -23,6 +24,8 @@ server.get('/', (_: Request, res: Response) => res.status(200).json({
   status: 200,
   message: "Welcome to the event manage API"
 }));
+
+server.use("/api/events", event);
 
 server.use((_: Request, res: Response) => res.status(404).json({
   status: 404,
