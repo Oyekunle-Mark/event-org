@@ -4,7 +4,7 @@
   "description": "A manage event app",
   "main": "src/index.ts",
   "scripts": {
-    "start": "tsc && nodemon dist/index.js",
+    "start": "tsc && node dist/index.js",
     "dev:run": "ts-node .",
     "dev:watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,7 +29,6 @@
     "helmet": "^3.21.2",
     "mongoose": "^5.8.11",
     "morgan": "^1.9.1",
-    "nodemon": "^2.0.2",
     "typescript": "^3.7.5",
     "winston": "^3.2.1"
   },
