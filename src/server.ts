@@ -26,7 +26,7 @@ server.get('/', (_: Request, res: Response) => res.status(200).json({
 
 server.use((_: Request, res: Response) => res.status(404).json({
   status: 404,
-  message: 'That URL looks quite fishy, mate!',
+  error: 'That URL looks quite fishy, mate!',
 }));
 
 export const start = async (): Promise<void> => {
