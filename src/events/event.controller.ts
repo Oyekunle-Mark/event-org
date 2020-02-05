@@ -29,7 +29,7 @@ export const createEvent = async (req: Request, res: Response) => {
             return response(res, 400, 'error', errors.array());
         }
 
-        const event = Events.create({ ...req.body });
+        const event = await Events.create({ ...req.body });
 
         return response(res, 201, 'data', event);
     } catch (err) {
@@ -53,7 +53,7 @@ export const updateEvent = async (req: Request, res: Response) => {
         }
 
         const { id } = req.params;
-        const event = Events.findOneAndUpdate({ _id: id }, req.body, { new: true }).lean().exec();
+        const event = await Events.findOneAndUpdate({ _id: id }, req.body, { new: true }).lean().exec();
 
         return response(res, 201, 'data', event);
     } catch (err) {
@@ -77,8 +77,8 @@ export const deleteEvent = async (req: Request, res: Response) => {
         }
 
         const { id } = req.params;
-        const event = Events.findOneAndRemove({ _id: id }, req.body);
-        
+        const event = await Events.findOneAndRemove({ _id: id }, req.body);
+
         return response(res, 201, 'data', event);
     } catch (err) {
         return response(res, 500, 'error', err);
