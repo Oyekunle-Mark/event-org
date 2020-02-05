@@ -21,7 +21,7 @@ export const createEvent = async (req: Request, res: Response) => {
         await check("title", "Event title must be longer than 3 characters.").isLength({ min: 3 }).run(req);
         await check("description", "Event description must be longer than 10 characters.").isLength({ min: 10 }).run(req);
         await check("venue", "Event venue must be longer than 5 characters.").isLength({ min: 5 }).run(req);
-        await check("isFree", "isFree property missing.").isBoolean().run(req);
+        await check("isFree", "isFree property must be a boolean.").isBoolean().run(req);
 
         const errors = validationResult(req);
 
@@ -43,7 +43,7 @@ export const updateEvent = async (req: Request, res: Response) => {
         await check("title", "Event title must be longer than 3 characters.").isLength({ min: 3 }).run(req);
         await check("description", "Event description must be longer than 10 characters.").isLength({ min: 10 }).run(req);
         await check("venue", "Event venue must be longer than 5 characters.").isLength({ min: 5 }).run(req);
-        await check("isFree", "isFree property missing.").isBoolean().run(req);
+        await check("isFree", "isFree property must be a boolean.").isBoolean().run(req);
         await check("id", "Request parameter must be provided").isNumeric().run(req);
 
         const errors = validationResult(req);
