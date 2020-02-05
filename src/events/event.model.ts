@@ -5,6 +5,33 @@ type EventDocument = mongoose.Document & {
     title: string;
     description: Date;
     venue: string;
-    free: boolean;
+    isFree: boolean;
     daysActive: Date[];
 }
+
+const userSchema = new mongoose.Schema({
+    creator: {
+        type: String,
+        required: true,
+        minlength: 4,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    venue: {
+        type: String,
+        required: true,
+    },
+    isFree: {
+        type: Boolean,
+        required: true,
+    },
+    daysActive: [{
+        type: Date,
+    }]
+})
