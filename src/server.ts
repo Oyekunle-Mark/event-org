@@ -7,6 +7,13 @@ import logger from 'morgan';
 const server = express();
 const PORT = 8080;
 
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
+server.use(logger('dev'));
+server.use(helmet());
+server.use(compression());
+server.use(cors());
+
 server.get('/', (_: Request, res: Response) => res.status(200).json({
   status: 200,
   message: "Welcome to the event manage API"
