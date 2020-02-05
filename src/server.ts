@@ -1,11 +1,37 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
+import compression from 'compression';
+import cors from 'cors';
+import helmet from 'helmet';
+import logger from 'morgan';
+import { config } from 'dotenv';
 
-const app = express();
-const PORT = 8080;
+import output from './utils/logger';
+import connect from './utils/db';
+import event from './events/event.route';
+import response from './utils/response';
 
-app.get('/', (req, res) => res.send('Hello world'));
+config();
+const server = express();
+const { PORT, MONGODB_URI } = process.env;
 
-export const start = () =>
-  app.listen(PORT, 
-    // TODO: replace console log with winston
-    console.log(`Server started at http://localhost:${PORT}`));
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
+server.use(logger('dev'));
+server.use(helmet());
+server.use(compression());
+server.use(cors());
+
+server.get('/', (_: Request, res: Response) => response(res, 200, 'message', 'Welcome to the event manager API'));
+
+server.use("/api/events", event);
+
+server.use((_: Request, res: Response) => response(res, 404, 'error', 'That URL looks quite fishy, mate!'));
+
+export const start = async (): Promise<void> => {
+  try {
+    await connect(MONGODB_URI as string);
+    server.listen(PORT, () => output.debug(`Server started at http://localhost:${PORT}`));
+  } catch (err) {
+    output.error(`Error starting server: {err}`);
+  }
+}
